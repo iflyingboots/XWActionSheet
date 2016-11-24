@@ -152,9 +152,13 @@ static const CGFloat kSectionPaddingHeight = 10.f;
 - (void)show
 {
     [[UIApplication sharedApplication].keyWindow addSubview:self];
-    self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-    [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:1.f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.menuView.frame = ({
             CGRect frame = self.menuView.frame;
             frame.origin.y = CGRectGetHeight(self.bounds) - self.menuHeight;

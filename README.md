@@ -6,7 +6,7 @@ Yet another action sheet for iOS.
 
 ## Installation
 
-Add `XWActionSheetView.h` and `XWActionSheetView.m` files to your projet.
+Add `XWActionSheetView.h` and `XWActionSheetView.m` files to your project.
 
 ## Usage
 
