@@ -18,6 +18,8 @@ typedef void (^XWActionSheetTapHandler) (NSUInteger index, NSString *title, XWAc
 
 @interface XWActionSheetView : UIView
 
+@property (nonatomic, copy) NSString *caption;
+
 - (instancetype)initWithTitles:(NSArray<NSString *> *)titles;
 - (void)show;
 - (void)hide;

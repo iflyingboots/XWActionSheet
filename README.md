@@ -15,19 +15,21 @@ Firstly, import:  `#import "XWActionSheetView.h"`
 Secondly, create an action sheet by:
 
 ```objective-c
-XWActionSheetView *sheetView = [[XWActionSheetView alloc] initWithTitles:@[@"椰子鸡", @"炸猪排", @"重庆火锅"]];
+XWActionSheetView *actionSheet = [[XWActionSheetView alloc] initWithTitles:@[@"椰子鸡", @"炸猪排", @"重庆火锅"]];
+// Optional
+actionSheet.caption = @"今天吃什么";
 ```
 
 Then, show this view by:
 
 ```objective-c
-[sheetView show];
+[actionSheet show];
 ```
 
 Finally, monitor actions by:
 
 ```objective-c
-[sheetView observeTapEventWithHandler:^(NSUInteger index, NSString *title, XWActionSheetItemType type) {
+[actionSheet observeTapEventWithHandler:^(NSUInteger index, NSString *title, XWActionSheetItemType type) {
     // do something with this info
 }];
 ```

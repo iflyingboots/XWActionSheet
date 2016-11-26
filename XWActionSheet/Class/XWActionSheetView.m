@@ -10,6 +10,7 @@
 
 static const CGFloat kItemHeight = 50.f;
 static const CGFloat kSectionPaddingHeight = 10.f;
+static const CGFloat kCaptainHeight = 40.f;
 
 @class XWActionSheetItemView;
 
@@ -126,7 +127,7 @@ static const CGFloat kSectionPaddingHeight = 10.f;
 {
     self.menuHeight = self.titlesArray.count * kItemHeight + kItemHeight + kSectionPaddingHeight;
     self.menuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) + self.menuHeight, CGRectGetWidth(self.bounds), self.menuHeight)];
-    self.menuView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
+    self.menuView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     
     // Add actions
     for (NSUInteger i = 0; i < self.titlesArray.count; i++) {
@@ -149,14 +150,22 @@ static const CGFloat kSectionPaddingHeight = 10.f;
     [self addSubview:self.menuView];
 }
 
+- (void)setCaption:(NSString *)caption
+{
+    _caption = [caption copy];
+    
+    UILabel *captainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -kCaptainHeight, CGRectGetWidth(self.bounds), kCaptainHeight)];
+    captainLabel.backgroundColor = self.menuView.backgroundColor;
+    captainLabel.textAlignment = NSTextAlignmentCenter;
+    captainLabel.font = [UIFont systemFontOfSize:13.f];
+    captainLabel.text = caption;
+    captainLabel.textColor = [UIColor grayColor];
+    [self.menuView addSubview:captainLabel];
+}
+
 - (void)show
 {
     [[UIApplication sharedApplication].keyWindow addSubview:self];
-    [UIView animateWithDuration:1.f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
-    } completion:^(BOOL finished) {
-        
-    }];
     
     [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.menuView.frame = ({
@@ -164,6 +173,15 @@ static const CGFloat kSectionPaddingHeight = 10.f;
             frame.origin.y = CGRectGetHeight(self.bounds) - self.menuHeight;
             frame;
         });
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)didMoveToSuperview
+{
+    [UIView animateWithDuration:1.f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     } completion:^(BOOL finished) {
         
     }];
